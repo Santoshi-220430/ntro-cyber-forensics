@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  forensic-platform:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ntro_cyber_forensics_platform
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - FORENSIC_SECRET_KEY=sih26148_ntro_authorized_dfir_super_secret_jwt_key_2026
+      - CORS_ORIGINS=http://localhost:8000,http://127.0.0.1:8000,http://localhost:5173
+    volumes:
+      - forensic_data:/app/backend/app
+      - forensic_reports:/app/backend/app/reports_vault
+      - forensic_evidence:/app/backend/app/evidence_vault
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  forensic_data:
+  forensic_reports:
+  forensic_evidence:

@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: ntro-cyber-forensics
+    runtime: python
+    buildCommand: "pip install -r backend/requirements.txt && cd frontend && npm install && npm run build && cd .."
+    startCommand: "uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --workers 2"
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: FORENSIC_SECRET_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: "*"
