@@ -30,7 +30,7 @@ async def lifespan(app: FastAPI):
     print("[-] Forensic Platform backend shutting down.")
 
 app = FastAPI(
-    title="NTRO Cyber Forensics Platform & DSL Engine",
+    title="Cyber Investigators - NTRO Forensics Platform & DSL Engine",
     description="Authorized Computer & Network Forensics Platform with Custom DSL and Security Compatibility Layer (SIH26148)",
     version="2.4.0",
     lifespan=lifespan
@@ -52,7 +52,7 @@ app.include_router(api_router, prefix="/api")
 def health():
     return {
         "status": "HEALTHY",
-        "service": "NTRO Cyber Forensics Platform",
+        "service": "Cyber Investigators Forensics Platform",
         "version": "2.4.0",
         "security_compatibility_mode": "AUTHORIZED_FORENSIC_MODE"
     }

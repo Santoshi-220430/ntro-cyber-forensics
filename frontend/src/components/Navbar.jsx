@@ -14,12 +14,12 @@ export default function Navbar({ activeCase, cases, onSelectCase, activeTab }) {
         </div>
         <div>
           <div className="flex items-center space-x-2">
-            <h1 className="text-base font-bold text-white tracking-wider">NTRO DFIR COMMAND</h1>
+            <h1 className="text-base font-bold text-white tracking-wider">CYBER INVESTIGATORS</h1>
             <span className="text-[10px] px-2 py-0.5 rounded bg-sky-950/80 text-sky-400 border border-sky-800/60 font-mono font-semibold">
               SIH26148
             </span>
           </div>
-          <p className="text-xs text-soc-muted">Cyber Forensics & Domain-Specific Scripting Platform</p>
+          <p className="text-xs text-soc-muted">NTRO Forensics & Domain-Specific Scripting Platform</p>
         </div>
       </div>
 

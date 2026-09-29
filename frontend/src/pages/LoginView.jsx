@@ -42,8 +42,8 @@ export default function LoginView() {
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-600 to-indigo-600 mx-auto flex items-center justify-center shadow-xl shadow-sky-500/20 mb-4 border border-sky-400/30">
               <Shield className="w-9 h-9 text-white" />
             </div>
-            <h1 className="text-xl font-bold tracking-wider text-white">NTRO CYBER FORENSICS</h1>
-            <p className="text-xs text-sky-400 font-mono mt-1">SIH26148 • AUTHORIZED FORENSIC PLATFORM</p>
+            <h1 className="text-xl font-bold tracking-wider text-white">CYBER INVESTIGATORS</h1>
+            <p className="text-xs text-sky-400 font-mono mt-1">NTRO FORENSIC PLATFORM • SIH26148</p>
             <p className="text-xs text-soc-muted mt-2">
               Cryptographically Governed Digital Evidence & Network Investigation System
             </p>

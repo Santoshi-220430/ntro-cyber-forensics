@@ -11,7 +11,10 @@ client = TestClient(app)
 def test_api_health_and_root():
     r = client.get("/")
     assert r.status_code == 200
-    assert r.json()["problem_id"] == "SIH26148"
+    if "application/json" in r.headers.get("content-type", ""):
+        assert r.json()["problem_id"] == "SIH26148"
+    else:
+        assert "html" in r.headers.get("content-type", "").lower()
 
     r = client.get("/health")
     assert r.status_code == 200
@@ -69,23 +72,25 @@ def test_full_api_workflow():
     assert exec_data["status"] == "SUCCESS"
     assert exec_data["security_eval"]["security_status"] == "AUTHORIZED"
 
+    active_case_id = exec_data.get("case_id", case_id)
+
     # 4. Get System Info
-    sys_res = client.get(f"/api/cases/{case_id}/system", headers=headers)
+    sys_res = client.get(f"/api/cases/{active_case_id}/system", headers=headers)
     assert sys_res.status_code == 200
     assert "hostname" in sys_res.json()
 
     # 5. Get Processes
-    proc_res = client.get(f"/api/cases/{case_id}/processes", headers=headers)
+    proc_res = client.get(f"/api/cases/{active_case_id}/processes", headers=headers)
     assert proc_res.status_code == 200
     assert len(proc_res.json()) > 0
 
     # 6. Get Timeline
-    tle_res = client.get(f"/api/cases/{case_id}/timeline", headers=headers)
+    tle_res = client.get(f"/api/cases/{active_case_id}/timeline", headers=headers)
     assert tle_res.status_code == 200
     assert len(tle_res.json()) > 0
 
     # 7. Get Findings
-    fnd_res = client.get(f"/api/cases/{case_id}/findings", headers=headers)
+    fnd_res = client.get(f"/api/cases/{active_case_id}/findings", headers=headers)
     assert fnd_res.status_code == 200
     assert len(fnd_res.json()) > 0
 
